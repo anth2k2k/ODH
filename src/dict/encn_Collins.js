@@ -7,10 +7,7 @@ class encn_Collins {
     }
 
     async displayName() {
-        let locale = await api.locale();
-        if (locale.indexOf('CN') != -1) return '柯林斯英汉双解';
-        if (locale.indexOf('TW') != -1) return '柯林斯英漢雙解';
-        return 'Collins EN->CN Dictionary';
+        return 'Anthonia Collins EN->EN Dictionary';
     }
 
 
@@ -97,7 +94,7 @@ class encn_Collins {
                 chn_tran = chn_tran ? `<span class="chn_tran">${chn_tran}</span>` : '';
                 //eng_tran = eng_tran ? eng_tran.replace(RegExp(expression, 'gi'), '<b>$&</b>') : ''; //surround expression with <b> in eng_translation.
                 eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran}</span>` : '';
-                definition += `${pos}<span class="tran">${eng_tran}${chn_tran}</span>`;
+                definition += `${pos}<span class="tran">${eng_tran}</span>`;
 
                 // make exmaple sentence segement
                 let exampleNodes = defNode.querySelectorAll('.exampleLists');
@@ -107,7 +104,7 @@ class encn_Collins {
                         if (index > maxexample - 1) break; // to control only n example sentences defined in option.
                         let chn_sent = T(example.querySelector('p+p'));
                         let eng_sent = T(example.querySelector('p')) ? T(example.querySelector('p')).replace(RegExp(expression, 'gi'), '<b>$&</b>') : ''; //surround expression with <b> in eng_example.
-                        definition += `<li class='sent'><span class='eng_sent'>${eng_sent}</span><span class='chn_sent'>${chn_sent}</span></li>`;
+                        definition += `<li class='sent'><span class='eng_sent'>${eng_sent}</span></li>`;
                     }
                     definition += '</ul>';
                 }
@@ -121,11 +118,9 @@ class encn_Collins {
                     span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                     span.tran {margin:0; padding:0;}
                     span.eng_tran {margin-right:3px; padding:0;}
-                    span.chn_tran {color:#0d47a1;}
                     ul.sents {font-size:0.8em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
                     li.sent  {margin:0; padding:0;}
                     span.eng_sent {margin-right:5px;}
-                    span.chn_sent {color:#0d47a1;}
                 </style>`;
 
             notes.push({
